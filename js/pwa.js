@@ -4,19 +4,12 @@
  * @version     1.0
  * @license     http://www.gnu.org/copyleft/lesser.html
  *
- *photosize: 72, 144, 200, 288, 320, 400, 512, 576, 640, 720, 800, 912, 1024, 1152, 1280, 1440 and 1600
+ * photosize: 72, 144, 200, 288, 320, 400, 512, 576, 640, 720, 800, 912, 1024, 1152, 1280, 1440 and 1600
  *
- */
-
-/* use %dd ,
- %mm,
- %Mmm,
- %yyyy,
  */
 var username = "108131436311379299390";  //Nils
 var album = "5637805629532816017"      //Keukenhaven ;)
 var photoSizeSmall = "200";
-var photoSizeLarge = "1024";
 var divId = "pwa";
 var url = "http://picasaweb.google.com/data/feed/base/user/" + username + "/albumid/" + album + "?category=photo&alt=json&callback=photos";
 
@@ -38,19 +31,18 @@ function $$() {
     document.getElementById(divId).innerHTML = sBuffer;
 };
 
-function cadre(img_src, link_a, title) { //template
-    return '<figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">'+
-        '<a href="' + link_a + '" itemprop="contentUrl" data-size="'+photoSizeLarge+'x'+photoSizeLarge+'"><img src="' + img_src + '?imgmax=140" itemprop="thumbnail" alt="' + title + '"></a>'+
-        '</figure>';
+function cadre(thumb_url, full, title) { //template
+    return '<a href="' + full.url + '" itemprop="contentUrl" data-size="'+full.width+'x'+full.height+'"><img src="' + thumb_url + '?imgmax=140" itemprop="thumbnail" alt="' + title + '"></a>';
 }
 
 function photos(j) {//photos in the selected album
     sBuffer = "";
     for (i = 0; i < j.feed.entry.length; i++) {
-        var img_begin = j.feed.entry[i].summary.$t.indexOf('src="') + 5;
-        var img_end = j.feed.entry[i].summary.$t.indexOf('" alt');
-        var img_base = j.feed.entry[i].summary.$t.slice(img_begin, img_end);
-        $(cadre(img_base.replace('288', photoSizeSmall),img_base.replace('288', photoSizeLarge),"")) ;
+        var entry = j.feed.entry[i];
+        var full = entry.media$group.media$content[0];
+        var title = entry.media$group.media$description.$t;
+        var thumb = entry.media$group.media$thumbnail[0].url.replace('s72', 's'+photoSizeSmall);
+        $(cadre(thumb.replace('s72', 's'+photoSizeSmall),full,title)) ;
     }
     $$();
     initPhotoSwipeFromDOM('#pwa');
