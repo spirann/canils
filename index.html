@@ -1,9 +1,18 @@
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="http://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
+
     <link rel="stylesheet" href="css/photoswipe.css">
     <link rel="stylesheet" href="css/default-skin/default-skin.css">
 
-    <link rel="stylesheet" href="css/pwa.css">
+    <link rel="stylesheet" href="css/masonry.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <script src="js/photoswipe/photoswipe.min.js"></script>
     <script src="js/photoswipe/photoswipe-ui-default.min.js"></script>
@@ -15,9 +24,30 @@
     <script type="text/javascript" src="js/initSwipe.js"></script>
 </head>
 <body>
-
-<div id="gallery">
-<div id="pwa"></div>
+<div class="columns-container transparent">
+    <div class="left-column menu">
+        <ul>
+            <li><a href="home.html" class="menu">bienvenue</a></li>
+            <li><a href="maries.html" class="menu">les futurs mariés</a></li>
+            <li><a href="cortege.html" class="menu">le cortège</a></li>
+            <li><a href="familles.html" class="menu">les familles</a></li>
+            <li><a href="directions_fr.html" class="menu">directions</a></li>
+            <li><a href="photos.html" class="menu">vos photos</a></li>
+            <li><a href="liste.html" class="menu">liste de mariage</a></li>
+            <li><a href="rsvp_fr.html" class="menu">rsvp</a></li>
+            <li><a href="home_en.html" class="menu">english</a></li>
+        </ul>
+    </div>
+    <div class="right-column content">
+        <img class="staticimg" alt="à la conquete du monde!" src="images/grandcanyon1.jpg"><br>
+        La future mariée: Camille Chatelle<br>
+                    <br>
+                    <img class="staticimg" alt="tranquille relax" src="images/barcelona.jpg"><br>
+        Le futur marié: Nils van der Mersch<br>
+        <div id="gallery">
+            <div id="pwa"></div>
+        </div>
+    </div>
 </div>
 
 

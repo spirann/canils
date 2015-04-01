@@ -1,0 +1,41 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0 auto;
+}
+
+.staticimg {
+    max-width: 100%;
+    height: auto;
+}
+
+.columns-container {
+    float: left;
+}
+
+.left-column {
+    float: left;
+    width: 200px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.right-column {
+    float: left;
+    width: calc(100% - 220px);
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 760px ) {
+
+    .right-column {
+        float: left;
+        width: 100%;
+    }
+}
