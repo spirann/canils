@@ -18,14 +18,13 @@ var album = "5637805629532816017"      //Keukenhaven ;)
 var photoSizeSmall = "200";
 var photoSizeLarge = "1024";
 var divId = "pwa";
-
-start('photos', "http://picasaweb.google.com/data/feed/base/user/" + username + "/albumid/" + album + "?category=photo&alt=json&callback=photos");
+var url = "http://picasaweb.google.com/data/feed/base/user/" + username + "/albumid/" + album + "?category=photo&alt=json&callback=photos";
 
 //Add script
-function start(id, url) {
+function pwa() {
     var head = document.getElementsByTagName("head")[0];
     var script = document.createElement('script');
-    script.id = id;
+    script.id = 'photos';
     script.type = 'text/javascript';
     script.src = url;
     head.appendChild(script);
@@ -40,7 +39,9 @@ function $$() {
 };
 
 function cadre(img_src, link_a, title) { //template
-    return '<a href="' + link_a + '"><img src="' + img_src + '?imgmax=140" alt="' + title + '"></a>';
+    return '<figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">'+
+        '<a href="' + link_a + '" itemprop="contentUrl" data-size="'+photoSizeLarge+'x'+photoSizeLarge+'"><img src="' + img_src + '?imgmax=140" itemprop="thumbnail" alt="' + title + '"></a>'+
+        '</figure>';
 }
 
 function photos(j) {//photos in the selected album
@@ -52,4 +53,5 @@ function photos(j) {//photos in the selected album
         $(cadre(img_base.replace('288', photoSizeSmall),img_base.replace('288', photoSizeLarge),"")) ;
     }
     $$();
+    initPhotoSwipeFromDOM('#pwa');
 }
