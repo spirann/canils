@@ -1,20 +1,19 @@
 /*
  * @author      Simon Pireyn <simon@pireyn.net>
  * @copyright   2004-12-27
- * @version     3.2
+ * @version     3.3
  * @license     http://www.gnu.org/copyleft/lesser.html
  *
  * photosize: 72, 144, 200, 288, 320, 400, 512, 576, 640, 720, 800, 912, 1024, 1152, 1280, 1440 and 1600
  *
  */
 var username = "108131436311379299390";  //Nils
-var album = "5637805629532816017"      //Keukenhaven ;)
 var photoSizeSmall = "200";
 var divId = "pwa";
-var url = "http://picasaweb.google.com/data/feed/base/user/" + username + "/albumid/" + album + "?category=photo&alt=json&callback=photos";
 
 //Add script
-function pwa() {
+function pwa(album) {
+    var url = "http://picasaweb.google.com/data/feed/base/user/" + username + "/albumid/" + album + "?category=photo&alt=json&callback=photos";
     var head = document.getElementsByTagName("head")[0];
     var script = document.createElement('script');
     script.id = 'photos';
