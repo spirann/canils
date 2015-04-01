@@ -9,7 +9,7 @@
  */
 var username = "108131436311379299390";  //Nils
 var album = "5637805629532816017"      //Keukenhaven ;)
-var photoSizeSmall = "288";
+var photoSizeSmall = "200";
 var divId = "pwa";
 var url = "http://picasaweb.google.com/data/feed/base/user/" + username + "/albumid/" + album + "?category=photo&alt=json&callback=photos";
 
@@ -42,30 +42,16 @@ function photos(j) {//photos in the selected album
         var thumb = entry.media$group.media$thumbnail[0];
         bufferAdd(cadre(thumb, full, title));
     }
+    //swipe
     initPhotoSwipeFromDOM('#pwa');
-    /*var wall = new freewall("#freewall");
-    imagesLoaded(wall, function () {
-        wall.reset({
-            selector: '.brick',
-            animate: true,
-            cellW: 200,
-            cellH: 'auto',
-            onResize: function () {
-                wall.fitWidth();
-            }
-        });
-        wall.container.find('.brick img').load(function () {
-            wall.fitWidth();
-        });
-    });  */
+    //masonry
     var container = document.querySelector('#gallery');
-     var msnry = new Masonry( container, {
-     // options
-     columnWidth: 210,
-     itemSelector: '.brick'
-     });
+    var msnry = new Masonry(container, {
+        columnWidth: 210,
+        itemSelector: '.brick'
+    });
 
-     imagesLoaded( container, function() {
+    imagesLoaded(container, function () {
         msnry.layout();
-     });
+    });
 }
