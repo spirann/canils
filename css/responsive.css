@@ -9,33 +9,33 @@ html {
 body {
     margin: 0 auto;
 }
+/* Au dessus c'est des trucs qui "nettoyent" les propriétés par défaut des navigateurs */
 
-.staticimg {
+.staticimg { /*permet de reduire automatiquement la taille des images*/
     max-width: 100%;
     height: auto;
 }
 
-.columns-container {
+.columns-container {  /* astuce qui evite les effets de bord bizarre */
     float: left;
 }
 
-.left-column {
+.left-column { /*taille fixe de 200px*/
     float: left;
     width: 200px;
     margin-right: 20px;
     margin-bottom: 20px;
 }
 
-.right-column {
+.right-column {  /*prend le reste de la place*/
     float: left;
     width: calc(100% - 220px);
 }
 
 /* MEDIA QUERIES */
-@media screen and (max-width: 760px ) {
+@media screen and (max-width: 760px ) {   /* Quand il n'y a plus assez de place, on reprend toute la largeur, du coup on passe en dessous */
 
     .right-column {
-        float: left;
         width: 100%;
     }
 }
