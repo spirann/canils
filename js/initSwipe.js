@@ -12,11 +12,14 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
 
         for (var i = 0; i < numNodes; i++) {
 
-            linkEl = thumbElements[i]; // <a> element
+            thumbEl = thumbElements[i]; // <div> element
+
             // include only element nodes
-            if (linkEl.nodeType !== 1) {
+            if (thumbEl.nodeType !== 1) {
                 continue;
             }
+
+            linkEl = thumbEl.children[0];  // <a> element
 
             size = linkEl.getAttribute('data-size').split('x');
 
@@ -38,7 +41,7 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
                 item.msrc = linkEl.children[0].getAttribute('src');
             }
 
-            item.el = linkEl; // save link to element for getThumbBoundsFn
+            item.el = thumbEl; // save link to element for getThumbBoundsFn
             items.push(item);
         }
 
@@ -59,7 +62,7 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
 
         // find root element of slide
         var clickedListItem = closest(eTarget, function (el) {
-            return (el.tagName && el.tagName.toUpperCase() === 'A');
+            return (el.tagName && el.tagName.toUpperCase() === 'DIV');
         });
 
         if (!clickedListItem) {
