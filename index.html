@@ -1,27 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script async type="text/javascript" src="js/photoswipe/photoswipe-ui-default.min.js"></script>
+    <script async type="text/javascript" src="js/masonry/masonry.pkgd.min.js"></script>
+    <script async type="text/javascript" src="js/masonry/imagesloaded.pkgd.min.js"></script>
 
-    <link href="http://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
-
-    <link rel="stylesheet" href="css/photoswipe.css">
-    <link rel="stylesheet" href="css/default-skin/default-skin.css">
-
-    <link rel="stylesheet" href="css/masonry.css">
-    <link rel="stylesheet" href="css/responsive.css">
-
-    <script async src="js/photoswipe/photoswipe.min.js"></script>
-    <script async src="js/photoswipe/photoswipe-ui-default.min.js"></script>
-
-    <script async src="js/masonry/masonry.pkgd.min.js"></script>
-    <script async src="js/masonry/imagesloaded.pkgd.min.js"></script>
-
-    <script async type="text/javascript" src="js/pwa.js"></script>
-    <script async type="text/javascript" src="js/initSwipe.js"></script>
-
+    <!-- bases styles -->
     <style>
         body {
             background: url(images/background.jpg) no-repeat fixed right bottom;
@@ -30,7 +16,7 @@
         .transparent {
             margin: 32px;
             padding: 20px;
-            background: transparent url(images/white.png) repeat scroll 0%;
+            background: transparent url(images/white.png) repeat scroll 0;
             border-radius: 10px;
         }
 
@@ -57,6 +43,63 @@
             font-size: 1.9em;
         }
     </style>
+    <!-- responsive -->
+    <style>
+        html {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
+            -moz-box-sizing: inherit;
+            -webkit-box-sizing: inherit;
+        }
+
+        body {
+            margin: 0 auto;
+        }
+
+        /* Au dessus c'est des trucs qui "nettoyent" les propriétés par défaut des navigateurs pour respecter les tailles déclarées plus bas*/
+
+        .staticimg {
+            /*permet de reduire automatiquement la taille des images*/
+            max-width: 100%;
+            height: auto;
+        }
+
+        .columns-container {
+            /* astuce qui evite les effets de bord bizarre causés par les float à l'intérieur*/
+            float: left;
+        }
+
+        .left-column {
+            /*taille fixe de 200px*/
+            float: left;
+            width: 200px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+
+        .right-column {
+            /*prend le reste de la place, plus besoin de float pour le dernier element*/
+            width: 100%;
+            padding-left: 220px; /* remplace le calc pas toujours supporté */
+        }
+
+        /* MEDIA QUERIES */
+        @media screen and (max-width: 760px ) {
+            /* Quand il n'y a plus assez de place, on reprend toute la largeur, du coup on passe en dessous */
+            .left-column {
+                width: 100%;
+            }
+
+            .right-column {
+                padding-left: 0;
+            }
+        }
+    </style>
 </head>
 <body>
 <div class="columns-container transparent">
@@ -76,8 +119,8 @@
     <div class="right-column content">
         <img class="staticimg" alt="à la conquete du monde!" src="images/grandcanyon1.jpg"><br>
         La future mariée: Camille Chatelle<br>
-                    <br>
-                    <img class="staticimg" alt="tranquille relax" src="images/barcelona.jpg"><br>
+        <br>
+        <img class="staticimg" alt="tranquille relax" src="images/barcelona.jpg"><br>
         Le futur marié: Nils van der Mersch<br>
 
         <div id="gallery">
@@ -86,8 +129,6 @@
 
     </div>
 </div>
-
-
 
 
 <!-- Root element of PhotoSwipe. Must have class pswp. -->
@@ -130,9 +171,9 @@
                 <!-- element will get class pswp__preloader--active when preloader is running -->
                 <div class="pswp__preloader">
                     <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -153,8 +194,15 @@
         </div>
     </div>
 </div>
+<!-- async load of css to fasten mobile load -->
 <script type="text/javascript">
-    pwa("5637805629532816017");     //Keukenhaven
+    LazyLoad=function(e){function u(t,n){var r=e.createElement(t),i;for(i in n){if(n.hasOwnProperty(i)){r.setAttribute(i,n[i])}}return r}function a(e){var t=r[e],n,o;if(t){n=t.callback;o=t.urls;o.shift();i=0;if(!o.length){n&&n.call(t.context,t.obj);r[e]=null;s[e].length&&l(e)}}}function f(){var n=navigator.userAgent;t={async:e.createElement("script").async===true};(t.webkit=/AppleWebKit\//.test(n))||(t.ie=/MSIE|Trident/.test(n))||(t.opera=/Opera/.test(n))||(t.gecko=/Gecko\//.test(n))||(t.unknown=true)}function l(i,o,l,p,d){var v=function(){a(i)},m=i==="css",g=[],y,b,w,E,S,x;t||f();if(o){o=typeof o==="string"?[o]:o.concat();if(m||t.async||t.gecko||t.opera){s[i].push({urls:o,callback:l,obj:p,context:d})}else{for(y=0,b=o.length;y<b;++y){s[i].push({urls:[o[y]],callback:y===b-1?l:null,obj:p,context:d})}}}if(r[i]||!(E=r[i]=s[i].shift())){return}n||(n=e.head||e.getElementsByTagName("head")[0]);S=E.urls.concat();for(y=0,b=S.length;y<b;++y){x=S[y];if(m){w=t.gecko?u("style"):u("link",{href:x,rel:"stylesheet"})}else{w=u("script",{src:x});w.async=false}w.className="lazyload";w.setAttribute("charset","utf-8");if(t.ie&&!m&&"onreadystatechange"in w&&!("draggable"in w)){w.onreadystatechange=function(){if(/loaded|complete/.test(w.readyState)){w.onreadystatechange=null;v()}}}else if(m&&(t.gecko||t.webkit)){if(t.webkit){E.urls[y]=w.href;h()}else{w.innerHTML='@import "'+x+'";';c(w)}}else{w.onload=w.onerror=v}g.push(w)}for(y=0,b=g.length;y<b;++y){n.appendChild(g[y])}}function c(e){var t;try{t=!!e.sheet.cssRules}catch(n){i+=1;if(i<200){setTimeout(function(){c(e)},50)}else{t&&a("css")}return}a("css")}function h(){var e=r.css,t;if(e){t=o.length;while(--t>=0){if(o[t].href===e.urls[0]){a("css");break}}i+=1;if(e){if(i<200){setTimeout(h,50)}else{a("css")}}}}var t,n,r={},i=0,s={css:[],js:[]},o=e.styleSheets;return{css:function(e,t,n,r){l("css",e,t,n,r)},js:function(e,t,n,r){l("js",e,t,n,r)}}}(this.document)
+    LazyLoad.css("http://fonts.googleapis.com/css?family=Josefin+Sans:400,700", function() {});
+    LazyLoad.css("http://fonts.googleapis.com/css?family=Amatic+SC:400,700", function() {});
+    LazyLoad.css("css/masonry.css", function() {});
+    LazyLoad.css("css/photoswipe.css", function() {});
+    LazyLoad.css("css/default-skin/default-skin.css", function() {});
+    LazyLoad.js(["js/pwa.js","js/initSwipe.js","js/photoswipe/photoswipe.min.js"],function() {pwa("5637805629532816017");}); //load gallery Keukenhaven
 </script>
 </body>
 </html>

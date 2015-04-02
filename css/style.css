@@ -6,7 +6,7 @@ body {
 .transparent {
     margin: 32px;
     padding: 20px;
-    background: transparent url(../images/white.png) repeat scroll 0%;
+    background: transparent url(../images/white.png) repeat scroll 0;
     border-radius: 10px;
 }
 
