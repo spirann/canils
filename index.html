@@ -3,25 +3,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script async type="text/javascript" src="js/photoswipe/photoswipe.min.js"></script>
+    <script async type="text/javascript" src="js/photoswipe/photoswipe-ui-default.min.js"></script>
 
-    <link href="http://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
-
-    <link rel="stylesheet" href="css/photoswipe.css">
-    <link rel="stylesheet" href="css/default-skin/default-skin.css">
-
-    <link rel="stylesheet" href="css/masonry.css">
-    <link rel="stylesheet" href="css/responsive.css">
-
-    <script async src="js/photoswipe/photoswipe.min.js"></script>
-    <script async src="js/photoswipe/photoswipe-ui-default.min.js"></script>
-
-    <script async src="js/masonry/masonry.pkgd.min.js"></script>
-    <script async src="js/masonry/imagesloaded.pkgd.min.js"></script>
+    <script async type="text/javascript" src="js/masonry/masonry.pkgd.min.js"></script>
+    <script async type="text/javascript" src="js/masonry/imagesloaded.pkgd.min.js"></script>
 
     <script async type="text/javascript" src="js/pwa.js"></script>
     <script async type="text/javascript" src="js/initSwipe.js"></script>
 
+    <!-- bases styles -->
     <style>
         body {
             background: url(images/background.jpg) no-repeat fixed right bottom;
@@ -89,7 +80,6 @@
 
 
 
-
 <!-- Root element of PhotoSwipe. Must have class pswp. -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
@@ -153,8 +143,33 @@
         </div>
     </div>
 </div>
+<!-- async load of css to fasten mobile load -->
 <script type="text/javascript">
-    pwa("5637805629532816017");     //Keukenhaven
+    function css(file) {
+        var cb = function () {
+            var l = document.createElement('link');
+            l.rel = 'stylesheet';
+            l.href = file;
+            var h = document.getElementsByTagName('head')[0];
+            h.parentNode.insertBefore(l, h);
+        };
+        var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+            webkitRequestAnimationFrame || msRequestAnimationFrame;
+        if (raf) raf(cb);
+        else window.addEventListener('load', cb);
+    }
+    css("http://fonts.googleapis.com/css?family=Josefin+Sans:400,700");
+    css("http://fonts.googleapis.com/css?family=Amatic+SC:400,700");
+    css("css/responsive.css");
+    css("css/masonry.css");
+    css("css/photoswipe.css");
+    css("css/default-skin/default-skin.css");
+</script>
+<!-- load gallery -->
+<script type="text/javascript">
+    window.onload = function() {
+        pwa("5637805629532816017");     //Keukenhaven
+    }
 </script>
 </body>
 </html>
