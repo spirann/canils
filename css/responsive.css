@@ -1,17 +1,20 @@
 html {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 *, *:before, *:after {
     box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    -webkit-box-sizing: inherit;
 }
 
 body {
     margin: 0 auto;
 }
 
-/* Au dessus c'est des trucs qui "nettoyent" les propriétés par défaut des navigateurs */
+/* Au dessus c'est des trucs qui "nettoyent" les propriétés par défaut des navigateurs pour respecter les tailles déclarées plus bas*/
 
 .staticimg {
     /*permet de reduire automatiquement la taille des images*/
@@ -20,7 +23,7 @@ body {
 }
 
 .columns-container {
-    /* astuce qui evite les effets de bord bizarre */
+    /* astuce qui evite les effets de bord bizarre causés par les float à l'intérieur*/
     float: left;
 }
 
@@ -33,11 +36,9 @@ body {
 }
 
 .right-column {
-    /*prend le reste de la place plus besoin de float dernier element*/
+    /*prend le reste de la place, plus besoin de float pour le dernier element*/
     width: 100%;
     padding-left: 220px; /* remplace le calc pas toujours supporté */
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
 }
 
 /* MEDIA QUERIES */
