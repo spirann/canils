@@ -1,5 +1,6 @@
 html {
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 
 *, *:before, *:after {
@@ -17,7 +18,7 @@ body {
 }
 
 .columns-container {  /* astuce qui evite les effets de bord bizarre */
-    float: left;
+   float: left;
 }
 
 .left-column { /*taille fixe de 200px*/
@@ -27,15 +28,16 @@ body {
     margin-bottom: 20px;
 }
 
-.right-column {  /*prend le reste de la place*/
-    float: left;
-    width: calc(100% - 220px);
+.right-column {  /*prend le reste de la place plus besoin de float dernier element*/
+    width: 100%;
+    padding-left: 240px;         /* remplace le calc pas toujouirs supporté */
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 760px ) {   /* Quand il n'y a plus assez de place, on reprend toute la largeur, du coup on passe en dessous */
-
     .right-column {
-        width: 100%;
+        padding-left: 0;
     }
 }
