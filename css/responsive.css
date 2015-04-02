@@ -10,33 +10,43 @@ html {
 body {
     margin: 0 auto;
 }
+
 /* Au dessus c'est des trucs qui "nettoyent" les propriétés par défaut des navigateurs */
 
-.staticimg { /*permet de reduire automatiquement la taille des images*/
+.staticimg {
+    /*permet de reduire automatiquement la taille des images*/
     max-width: 100%;
     height: auto;
 }
 
-.columns-container {  /* astuce qui evite les effets de bord bizarre */
-   float: left;
+.columns-container {
+    /* astuce qui evite les effets de bord bizarre */
+    float: left;
 }
 
-.left-column { /*taille fixe de 200px*/
+.left-column {
+    /*taille fixe de 200px*/
     float: left;
     width: 200px;
     margin-right: 20px;
     margin-bottom: 20px;
 }
 
-.right-column {  /*prend le reste de la place plus besoin de float dernier element*/
+.right-column {
+    /*prend le reste de la place plus besoin de float dernier element*/
     width: 100%;
-    padding-left: 240px;         /* remplace le calc pas toujouirs supporté */
+    padding-left: 220px; /* remplace le calc pas toujours supporté */
     box-sizing: border-box;
     -moz-box-sizing: border-box;
 }
 
 /* MEDIA QUERIES */
-@media screen and (max-width: 760px ) {   /* Quand il n'y a plus assez de place, on reprend toute la largeur, du coup on passe en dessous */
+@media screen and (max-width: 760px ) {
+    /* Quand il n'y a plus assez de place, on reprend toute la largeur, du coup on passe en dessous */
+    .left-column {
+        width: 100%;
+    }
+
     .right-column {
         padding-left: 0;
     }
