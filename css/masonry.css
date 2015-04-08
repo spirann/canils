@@ -1,6 +1,7 @@
 #gallery {
     margin: 15px;
 }
+
 #pwa {
     margin: 0 auto;
 }
@@ -15,6 +16,7 @@
     border: none;
     margin: 5px;
 }
+
 .brick img {
     width: 200px;
     display: block;
@@ -22,30 +24,31 @@
     padding: 0;
 }
 
-.description {
+.description, .people {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
-    position : absolute;
-    bottom: 0;
-    background: rgba(0,0,0,0.5);
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     width: 100%;
-    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: opacity 500ms;
+    -moz-transition: opacity 500ms;
+    -o-transition: opacity 500ms;
+    transition: opacity 500ms;
 }
 
-.brick:hover .description {
-    visibility: visible;
+.brick:hover .description,
+.brick:hover .people {
+    opacity: 1;
+}
+
+.description {
+    bottom: 0;
 }
 
 .people {
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
-    position : absolute;
     top: 0;
-    background: rgba(0,0,0,0.5);
-    color: white;
-    width: 100%;
     font-size: small;
 }
