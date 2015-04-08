@@ -89,7 +89,7 @@ function getPeople(entry) {
         for (var i = 0; i < shapes.length; i++) {
             names += shapes[i].name;
             if (i < shapes.length - 1) {
-                names += ",";
+                names += ", ";
             }
         }
     }
