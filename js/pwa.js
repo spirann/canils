@@ -9,12 +9,13 @@
  */
 var username = "108131436311379299390";  //Nils
 var photoSizeSmall = "200";
-var photoSizeBig="1600";
+var photoSizeBig = "1600";
 var divId = "pwa";
 
 //Add script
 function pwa(album) {
-    var url = "http://picasaweb.google.com/data/feed/base/user/" + username + "/albumid/" + album + "?category=photo&alt=json&callback=photos&imgmax=" + photoSizeBig + "&thumbsize=" + photoSizeSmall;
+    var url = "http://picasaweb.google.com/data/feed/back_compat/user/" + username + "/albumid/" + album +
+        "?category=photo&alt=json&callback=photos&imgmax=" + photoSizeBig + "&thumbsize=" + photoSizeSmall + "&fd=shapes2";
     var head = document.getElementsByTagName("head")[0];
     var script = document.createElement('script');
     script.id = 'photos';
@@ -30,10 +31,10 @@ function bufferAdd(a) {
     document.getElementById(divId).appendChild(brick)
 }
 
-function cadre(thumb, full, title) { //template
+function cadre(thumb, full, title, people) { //template
     var a = document.createElement("a");
     a.href = full.url;
-    a.setAttribute("data-size",full.width + 'x' + full.height);
+    a.setAttribute("data-size", full.width + 'x' + full.height);
 
     var img = document.createElement("img");
     img.src = thumb.url;
@@ -41,10 +42,15 @@ function cadre(thumb, full, title) { //template
     img.alt = title;
     a.appendChild(img);
 
-    var span = document.createElement("span");
-    span.innerHTML = title;
-    span.setAttribute("class","description");
-    a.appendChild(span);
+    var descriptionSpan = document.createElement("span");
+    descriptionSpan.innerHTML = title;
+    descriptionSpan.setAttribute("class", "description");
+    a.appendChild(descriptionSpan);
+
+    var peopleSpan = document.createElement("span");
+    peopleSpan.innerHTML = people;
+    peopleSpan.setAttribute("class", "people");
+    a.appendChild(peopleSpan);
 
     return a;
 }
@@ -55,7 +61,8 @@ function photos(j) {//photos in the selected album
         var full = entry.media$group.media$content[0];
         var title = entry.media$group.media$description.$t;
         var thumb = entry.media$group.media$thumbnail[0];
-        bufferAdd(cadre(thumb, full, title));
+        var people = getPeople(entry);
+        bufferAdd(cadre(thumb, full, title, people));
     }
     //swipe
     initPhotoSwipeFromDOM('#pwa');
@@ -70,4 +77,18 @@ function photos(j) {//photos in the selected album
     imagesLoaded(container, function () {
         msnry.layout();
     });
+}
+
+function getPeople(entry) {
+    var names = "";
+    if (entry.gphoto$shapes != null && entry.gphoto$shapes.gphoto$shape != null) {
+        var shapes = entry.gphoto$shapes.gphoto$shape;
+        for (var i = 0; i < shapes.length; i++) {
+            names += shapes[i].name;
+            if (i < shapes.length - 1) {
+                names += ",";
+            }
+        }
+    }
+    return names;
 }
