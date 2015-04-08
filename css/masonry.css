@@ -21,3 +21,19 @@
     margin: 0;
     padding: 0;
 }
+
+.description {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    position : absolute;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    width: 100%;
+    visibility: hidden;
+}
+
+.brick:hover .description {
+    visibility: visible;
+}

@@ -14,7 +14,7 @@ var divId = "pwa";
 
 //Add script
 function pwa(album) {
-    var url = "http://picasaweb.google.com/data/feed/base/user/" + username + "/albumid/" + album + "?category=photo&alt=json&callback=photos&imgmax=" + photoSizeBig;
+    var url = "http://picasaweb.google.com/data/feed/base/user/" + username + "/albumid/" + album + "?category=photo&alt=json&callback=photos&imgmax=" + photoSizeBig + "&thumbsize=" + photoSizeSmall;
     var head = document.getElementsByTagName("head")[0];
     var script = document.createElement('script');
     script.id = 'photos';
@@ -26,16 +26,31 @@ function pwa(album) {
 function bufferAdd(a) {
     var brick = document.createElement("div");
     brick.setAttribute("class", "brick");
-    brick.innerHTML = a;
+    brick.appendChild(a);
     document.getElementById(divId).appendChild(brick)
 }
 
 function cadre(thumb, full, title) { //template
-    return '<a href="' + full.url + '" data-size="' + full.width + 'x' + full.height + '"><img src="' + thumb.url.replace('s72', 's' + photoSizeSmall) + '" width="200px" alt="' + title + '"></a>';
+    var a = document.createElement("a");
+    a.href = full.url;
+    a.setAttribute("data-size",full.width + 'x' + full.height);
+
+    var img = document.createElement("img");
+    img.src = thumb.url;
+    img.width = "200px";
+    img.alt = title;
+    a.appendChild(img);
+
+    var span = document.createElement("span");
+    span.innerHTML = title;
+    span.setAttribute("class","description");
+    a.appendChild(span);
+
+    return a;
 }
 
 function photos(j) {//photos in the selected album
-    for (i = 0; i < j.feed.entry.length; i++) {
+    for (var i = 0; i < j.feed.entry.length; i++) {
         var entry = j.feed.entry[i];
         var full = entry.media$group.media$content[0];
         var title = entry.media$group.media$description.$t;
