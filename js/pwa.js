@@ -9,11 +9,12 @@
  */
 var username = "108131436311379299390";  //Nils
 var photoSizeSmall = "200";
+var photoSizeBig="1600";
 var divId = "pwa";
 
 //Add script
 function pwa(album) {
-    var url = "http://picasaweb.google.com/data/feed/base/user/" + username + "/albumid/" + album + "?category=photo&alt=json&callback=photos";
+    var url = "http://picasaweb.google.com/data/feed/base/user/" + username + "/albumid/" + album + "?category=photo&alt=json&callback=photos&imgmax=" + photoSizeBig;
     var head = document.getElementsByTagName("head")[0];
     var script = document.createElement('script');
     script.id = 'photos';
