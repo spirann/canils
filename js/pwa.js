@@ -10,7 +10,11 @@
 var username = "108131436311379299390";  //Nils
 var photoSizeSmall = "200";
 var photoSizeBig = "1600";
+var showPeople = true;
+var showTitleHover = true;
+
 var divId = "pwa";
+var elem = "brick";
 
 //Add script
 function pwa(album) {
@@ -24,53 +28,52 @@ function pwa(album) {
     head.appendChild(script);
 }
 
-function bufferAdd(a) {
-    var brick = document.createElement("div");
-    brick.setAttribute("class", "brick");
-    brick.appendChild(a);
-    document.getElementById(divId).appendChild(brick)
-}
-
-function cadre(thumb, full, title, people) { //template
+function addBrick(entry) { //template
+    var full = entry.media$group.media$content[0];
     var a = document.createElement("a");
     a.href = full.url;
     a.setAttribute("data-size", full.width + 'x' + full.height);
 
+    var title = entry.media$group.media$description.$t;
+    var thumb = entry.media$group.media$thumbnail[0];
     var img = document.createElement("img");
     img.src = thumb.url;
     img.width = "200px";
     img.alt = title;
     a.appendChild(img);
 
-    var descriptionSpan = document.createElement("span");
-    descriptionSpan.innerHTML = title;
-    descriptionSpan.setAttribute("class", "description");
-    a.appendChild(descriptionSpan);
+    if(showTitleHover) {
+        var descriptionSpan = document.createElement("span");
+        descriptionSpan.innerHTML = title;
+        descriptionSpan.setAttribute("class", "description");
+        a.appendChild(descriptionSpan);
+    }
 
-    var peopleSpan = document.createElement("span");
-    peopleSpan.innerHTML = people;
-    peopleSpan.setAttribute("class", "people");
-    a.appendChild(peopleSpan);
+    if (showPeople) {
+        var people = getPeople(entry);
+        var peopleSpan = document.createElement("span");
+        peopleSpan.innerHTML = people;
+        peopleSpan.setAttribute("class", "people");
+        a.appendChild(peopleSpan);
+    }
 
-    return a;
+    var brickDiv = document.createElement("div");
+    brickDiv.setAttribute("class", elem);
+    brickDiv.appendChild(a);
+    document.getElementById(divId).appendChild(brickDiv)
 }
 
 function photos(j) {//photos in the selected album
     for (var i = 0; i < j.feed.entry.length; i++) {
-        var entry = j.feed.entry[i];
-        var full = entry.media$group.media$content[0];
-        var title = entry.media$group.media$description.$t;
-        var thumb = entry.media$group.media$thumbnail[0];
-        var people = getPeople(entry);
-        bufferAdd(cadre(thumb, full, title, people));
+        addBrick(j.feed.entry[i]);
     }
     //swipe
-    initPhotoSwipeFromDOM('#pwa');
+    initPhotoSwipeFromDOM('#'+divId);
     //masonry
-    var container = document.querySelector('#pwa');
+    var container = document.querySelector('#'+divId);
     var msnry = new Masonry(container, {
         columnWidth: 210,
-        itemSelector: '.brick',
+        itemSelector: '.'+elem,
         isFitWidth: true
     });
 
