@@ -67,8 +67,6 @@ function photos(j) {//photos in the selected album
     for (var i = 0; i < j.feed.entry.length; i++) {
         addBrick(j.feed.entry[i]);
     }
-    //swipe
-    initPhotoSwipeFromDOM('#'+divId);
     //masonry
     var container = document.querySelector('#'+divId);
     var msnry = new Masonry(container, {
@@ -80,6 +78,8 @@ function photos(j) {//photos in the selected album
     imagesLoaded(container, function () {
         msnry.layout();
     });
+    //swipe
+    initPhotoSwipeFromDOM('#'+divId);
 }
 
 function getPeople(entry) {
