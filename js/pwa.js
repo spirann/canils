@@ -44,10 +44,11 @@ function photos(j) {//photos in the selected album
     //swipe
     initPhotoSwipeFromDOM('#pwa');
     //masonry
-    var container = document.querySelector('#gallery');
+    var container = document.querySelector('#pwa');
     var msnry = new Masonry(container, {
         columnWidth: 210,
-        itemSelector: '.brick'
+        itemSelector: '.brick',
+        isFitWidth: true
     });
 
     imagesLoaded(container, function () {
