@@ -12,7 +12,7 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
 
         for (var i = 0; i < numNodes; i++) {
 
-            thumbEl = thumbElements[i]; // <div> element
+            var thumbEl = thumbElements[i]; // <div> element
 
             // include only element nodes
             if (thumbEl.nodeType !== 1) {
@@ -31,14 +31,16 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
             };
 
 
-            if (linkEl.getAttribute('alt') != null) {
-                // <alt> content
-                item.title = linkEl.getAttribute('alt');
-            }
+
 
             if (linkEl.children.length > 0) {
                 // <img> thumbnail element, retrieving thumbnail url
-                item.msrc = linkEl.children[0].getAttribute('src');
+                var imgEl = linkEl.children[0];
+                item.msrc = imgEl.getAttribute('src');
+                if (imgEl.getAttribute('alt') != null) {
+                    // <alt> content
+                    item.title = imgEl.getAttribute('alt');
+                }
             }
 
             item.el = thumbEl; // save link to element for getThumbBoundsFn
