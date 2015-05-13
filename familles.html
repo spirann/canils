@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!--[if lte IE 8]>
+        <script type="text/javascript" src="js/ie8.polyfil.min.js"></script>
+    <![endif]-->
+    <!-- le style de ce qu'on voit immédiatement ("above the fold") est placé dans l'html ("inline") pour être chargé immédiatement.
+    Le reste sera chargé de manière asynchrone pour ne pas ralentir le chargement de la page -->
+    <!-- bases styles -->
+    <style>
+        body {
+            background: url(images/background.jpg) no-repeat fixed right bottom;
+        }
+
+        a {
+            color: black;
+        }
+
+        .transparent {
+            margin: 32px;
+            padding: 20px;
+            background: transparent url(images/white.png) repeat scroll 0;
+            border-radius: 10px;
+        }
+
+        .menu {
+            font-size: 1.8em;
+            font-family: 'Amatic SC', cursive;
+            color: black;
+            text-align: center;
+        }
+
+        .menu ul {
+            list-style: none;
+            margin: 0;
+            padding-left: 0;
+        }
+
+        .menu a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            font-weight: bold;
+        }
+
+        .content {
+            text-align: center;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1.9em;
+        }
+    </style>
+    <!-- responsive -->
+    <style>
+        html {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
+            -moz-box-sizing: inherit;
+            -webkit-box-sizing: inherit;
+        }
+
+        body {
+            margin: 0 auto;
+        }
+
+        /* Au dessus c'est des trucs qui "nettoyent" les propriétés par défaut des navigateurs pour respecter les tailles déclarées plus bas*/
+
+        .staticimg {
+            /*permet de reduire automatiquement la taille des images*/
+            max-width: 100%;
+            height: auto;
+        }
+
+        .columns-container {
+            /* astuce qui evite les effets de bord bizarre causés par les float à l'intérieur*/
+            /*float: left;*/
+            max-width: 1220px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .left-column {
+            /*taille fixe de 200px sur desktop*/
+            float: left;
+            width: 240px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+
+        .famille {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .famille:before,
+        .famille:after {
+            content: " ";
+            display: table;
+        }
+
+        .famille:after {
+            clear: both;
+        }
+
+        .famille .photo {
+            float: left;
+            width: 300px;
+            text-align: center;
+        }
+
+        .famille .photo img {
+            max-height: 300px;
+        }
+
+        .right-column {
+            /*prend le reste de la place, plus besoin de float pour le dernier element*/
+            width: 100%;
+            padding-left: 260px; /* remplace le calc pas toujours supporté */
+        }
+
+        /* MEDIA QUERIES */
+        @media screen and (max-width: 760px ) {
+            /* mobile css */
+            /* Quand il n'y a plus assez de place, on reprend toute la largeur, du coup on passe en dessous */
+            .left-column {
+                width: 100%;
+            }
+
+            .right-column {
+                padding-left: 0;
+            }
+
+            .famille {
+                text-align: center;
+            }
+
+            .famille .photo {
+                float: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="columns-container transparent">
+    <div class="left-column menu">
+        <ul>
+            <li><a href="home.html" class="menu">bienvenue</a></li>
+            <li><a href="maries.html" class="menu">les futurs mariés</a></li>
+            <li><a href="cortege.html" class="menu">le cortège</a></li>
+            <li><a href="familles.html" class="menu">les familles</a></li>
+            <li><a href="directions_fr.html" class="menu">directions</a></li>
+            <li><a href="photos.html" class="menu">vos photos</a></li>
+            <li><a href="liste.html" class="menu">liste de mariage</a></li>
+            <li><a href="rsvp_fr.html" class="menu">rsvp</a></li>
+            <li><a href="home_en.html" class="menu">english</a></li>
+        </ul>
+    </div>
+    <div class="right-column content">
+
+        <div>Cliquez sur les visages des membres de notre famille pour découvrir qui est qui!<br>
+            <br>
+            <map id="imgmap20152314539" name="imgmap20152314539">
+                <area shape="circle" alt="Dimitri" title="Dimitri" coords="155,190,64" href="#dimitri" target="">
+                <area shape="circle" alt="Nils" title="Nils" coords="328,102,47" href="#nils" target="">
+                <area shape="circle" alt="Charlotte" title="Charlotte" coords="419,94,45" href="#charlotte" target="">
+                <area shape="circle" alt="Christian" title="Christian" coords="521,88,49" href="#christian" target="">
+                <area shape="circle" alt="Ulysse" title="Ulysse" coords="625,96,35" href="#ulysse" target="">
+                <area shape="circle" alt="Vassili" title="Vassili" coords="741,113,42" href="#vassili" target="">
+                <area shape="circle" alt="Camille" title="Camille" coords="466,163,41" href="#camille" target="">
+                <area shape="circle" alt="Isaline" title="Isaline" coords="673,155,40" href="#isaline" target="">
+                <area shape="circle" alt="Juliane" title="Juliane" coords="763,223,56" href="#juliane" target="">
+                <area shape="circle" alt="Laetitia" title="Laetitia" coords="649,270,53" href="#laetitia" target="">
+                <area shape="circle" alt="Yannick" title="Yannick" coords="524,230,51" href="#yannick" target="">
+                <area shape="circle" alt="Marie-Charlotte" title="Marie-Charlotte" coords="416,238,49"
+                      href="#mariecharlotte" target="">
+                <area shape="circle" alt="Roméo" title="Roméo" coords="319,292,44" href="#romeo" target="">
+                <area shape="circle" alt="Achille" title="Achille" coords="661,369,40" href="#achille" target="">
+                <area shape="circle" alt="Théodore" title="Théodore" coords="478,530,56" href="#theodore" target="">
+                <area shape="circle" alt="Olympia" title="Olympia" coords="173,475,57" href="#olympia" target="">
+                <!-- Created by Online Image Map Editor (http://www.maschek.hu/imagemap/index) --></map>
+            <img alt="" usemap="#imgmap20152314539" class="staticimg" src="images/family.jpg"><br>
+        </div>
+
+
+        <div class="famille">
+            <div class="photo"><img alt="" src="images/marienoelle.jpg"/></div>
+            <p class="text">
+                Marie-Noëlle van der Mersch<br/>
+                <small>(qui a pris la photo ci-dessus)</small>
+                <br/>
+                <small>Maman de Nils</small>
+            </p>
+        </div>
+        <div class="famille">
+            <a name="christian"></a>
+            <div class="photo"><img alt="" src="images/christian.jpg"/> </div>
+
+        <p class="text">Christian Chatelle<br/>
+            <small>Papa de Camille</small>
+        </p>
+        </div>
+        <div class="famille">
+            <a name="juliane"></a>
+            <div class="photo"><img alt="" src="images/juliane.jpg"/>  </div>
+            <p class="text">
+            Juliane Chatelle<br>
+            <small>Maman de Camille</small>
+            </p>
+        </div>
+        <div class="famille">
+            <a name="charlotte"></a>
+            <div class="photo"><img alt="" src="images/charlotte2.jpg"/> </div>
+            <p class="text">
+            Charlotte Chatelle<br>
+            <small>Soeur ainée de Camille</small>
+            </p>
+        </div>
+        <div class="famille">
+            <a name="dimitri"></a>
+            <div class="photo"><img alt="" src="images/dimitri.jpg"/>  </div>
+            <p class="text">
+            Dimitri van der Mersch<br>
+            <small>Frère ainé de Nils</small>
+            </p>
+        </div>
+        <div class="famille">
+            <a name="laetitia"></a>
+            <div class="photo"><img alt="" src="images/laetitia.jpg"/> </div>
+            <p class="text">
+            Laetitia van der Mersch<br>
+            <small>Epouse de Dimitri et belle-soeur de Nils</small>
+            </p>
+        </div>
+        <div class="famille">
+            <a name="olympia"></a>
+            <div class="photo"><img alt="" src="images/olympia.jpg"/> </div>
+            <p class="text">
+            Olympia van der Mersch<br>
+            <small>Fille de Dimitri &amp; Laetitia et filleule de Nils</small>
+            </p>
+        </div>
+        <div class="famille">
+            <a name="ulysse"></a>
+            <div class="photo"><img alt="" src="images/ulysse.jpg"/> </div>
+            <p class="text">
+            Ulysse van der Mersch<br>
+            <small>Fils de Dimitri &amp; Laetitia et neveu de Nils</small>
+            </p>
+        </div>
+        <div class="famille">
+            <a name="achille"></a>
+            <div class="photo"><img alt="" src="images/achille.jpg"/> </div>
+            <p class="text">
+            Achille van der Mersch<br>
+            <small>Fils de Dimitri &amp; Laetitia et neveu de Nils</small>
+            </p>
+        </div>
+        <div class="famille">
+            <a name="vassili"></a>
+            <div class="photo"><img alt="" src="images/vassili.jpg"/> </div>
+            <p class="text">
+            Vassili van der Mersch<br>
+            <small>Frère ainé de Nils</small>
+            </p>
+        </div>
+        <div class="famille">
+            <a name="isaline"></a>
+            <div class="photo"><img alt="" src="images/isaline.jpg"/> </div>
+            <p class="text">
+            Isaline van der Straten Waillet<br>
+            <small>Fiancée de Vassili et future belle-soeur de Nils</small>
+            </p>
+        </div>
+        <div class="famille">
+            <a name="yannick"></a>
+            <div class="photo"><img alt="" src="images/yannick.jpg"/> </div>
+            <p class="text">
+            Yannick Delacroix<br>
+            <small>Epoux de Marie-Charlotte et beau-frère de Nils</small>
+            </p>
+        </div>
+        <div class="famille">
+            <a name="mariecharlotte"></a>
+            <div class="photo"><img alt="" src="images/mariecharlotte.jpg"/> </div>
+            <p class="text">
+            Marie-Charlotte Delacroix<br>
+            <small>Soeur ainée de Nils</small>
+            </p>
+        </div>
+        <div class="famille">
+            <a name="theodore"></a>
+            <div class="photo"><img alt="" src="images/theodore.jpg"/></div>
+            <p class="text">
+            Théodore Delacroix<br>
+            <small>Fils de Yannick &amp; Marie-Charlotte et neveu de Nils</small>
+            </p>
+        </div>
+        <div class="famille">
+            <a name="romeo"></a>
+            <div class="photo"><img alt="" src="images/romeo.jpg"/></div>
+            <p class="text">
+            Roméo Delacroix<br>
+            <small>Fils de Yannick &amp; Marie-Charlotte et filleul de Nils</small>
+            </p>
+        </div>
+        <div class="famille">
+            <div class="photo"><img alt="" src="images/gilberte.jpg"/></div>
+            <p class="text">
+            Gilberte Chatelle<br>
+            <small>Grand-mère de Camille</small>
+            </p>
+        </div>
+        <div class="famille">
+            <div class="photo"><img alt="" src="images/joseph_et_suzanne2.jpg"/> </div>
+            <p class="text">
+            Joseph &amp; Suzanne Lavis<br>
+            <small>Grands-parents de Camille</small>
+            </p>
+        </div>
+        <div class="famille">
+            <a name="nils"></a>
+            <div class="photo"><img alt="" src="images/ryan.jpg"/> </div>
+            <p class="text">
+            Nils van der Mersch<br>
+            <small>Fiancé de Camille</small>
+            </p>
+        </div>
+        <div class="famille">
+            <a name="camille"></a>
+            <div class="photo"><img alt="" src="images/jennifer.jpg"/></div>
+            <p class="text">
+            Camille Chatelle<br>
+            <small>Fiancée de Nils</small>
+            </p>
+        </div>
+
+
+    </div>
+</div>
+<!-- async load of css to fasten mobile load -->
+<script type="text/javascript">
+    LazyLoad=function(e){function u(t,n){var r=e.createElement(t),i;for(i in n){if(n.hasOwnProperty(i)){r.setAttribute(i,n[i])}}return r}function a(e){var t=r[e],n,o;if(t){n=t.callback;o=t.urls;o.shift();i=0;if(!o.length){n&&n.call(t.context,t.obj);r[e]=null;s[e].length&&l(e)}}}function f(){var n=navigator.userAgent;t={async:e.createElement("script").async===true};(t.webkit=/AppleWebKit\//.test(n))||(t.ie=/MSIE|Trident/.test(n))||(t.opera=/Opera/.test(n))||(t.gecko=/Gecko\//.test(n))||(t.unknown=true)}function l(i,o,l,p,d){var v=function(){a(i)},m=i==="css",g=[],y,b,w,E,S,x;t||f();if(o){o=typeof o==="string"?[o]:o.concat();if(m||t.async||t.gecko||t.opera){s[i].push({urls:o,callback:l,obj:p,context:d})}else{for(y=0,b=o.length;y<b;++y){s[i].push({urls:[o[y]],callback:y===b-1?l:null,obj:p,context:d})}}}if(r[i]||!(E=r[i]=s[i].shift())){return}n||(n=e.head||e.getElementsByTagName("head")[0]);S=E.urls.concat();for(y=0,b=S.length;y<b;++y){x=S[y];if(m){w=t.gecko?u("style"):u("link",{href:x,rel:"stylesheet"})}else{w=u("script",{src:x});w.async=false}w.className="lazyload";w.setAttribute("charset","utf-8");if(t.ie&&!m&&"onreadystatechange"in w&&!("draggable"in w)){w.onreadystatechange=function(){if(/loaded|complete/.test(w.readyState)){w.onreadystatechange=null;v()}}}else if(m&&(t.gecko||t.webkit)){if(t.webkit){E.urls[y]=w.href;h()}else{w.innerHTML='@import "'+x+'";';c(w)}}else{w.onload=w.onerror=v}g.push(w)}for(y=0,b=g.length;y<b;++y){n.appendChild(g[y])}}function c(e){var t;try{t=!!e.sheet.cssRules}catch(n){i+=1;if(i<200){setTimeout(function(){c(e)},50)}else{t&&a("css")}return}a("css")}function h(){var e=r.css,t;if(e){t=o.length;while(--t>=0){if(o[t].href===e.urls[0]){a("css");break}}i+=1;if(e){if(i<200){setTimeout(h,50)}else{a("css")}}}}var t,n,r={},i=0,s={css:[],js:[]},o=e.styleSheets;return{css:function(e,t,n,r){l("css",e,t,n,r)},js:function(e,t,n,r){l("js",e,t,n,r)}}}(this.document)
+    LazyLoad.css("http://fonts.googleapis.com/css?family=Josefin+Sans:400,700", function () {
+    });
+    LazyLoad.css("http://fonts.googleapis.com/css?family=Amatic+SC:400,700", function () {
+    });
+    LazyLoad.js("js/imageMapResizer.min.js", function() {
+        imageMapResize(document.getElementById("imgmap20152314539"));
+    })
+</script>
+</body>
+</html>
