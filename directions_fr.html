@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- le style de ce qu'on voit immédiatement ("above the fold") est placé dans l'html ("inline") pour être chargé immédiatement.
+    Le reste sera chargé de manière asynchrone pour ne pas ralentir le chargement de la page -->
+    <!-- bases styles -->
+    <style>
+        body {
+            background: url(images/background.jpg) no-repeat fixed right bottom;
+        }
+
+	a {
+		color: black;
+	}
+
+        .transparent {
+            margin: 32px;
+            padding: 20px;
+            background: transparent url(images/white.png) repeat scroll 0;
+            border-radius: 10px;
+        }
+
+        .menu {
+            font-size: 1.8em;
+            font-family: 'Amatic SC', cursive;
+            color: black;
+            text-align: center;
+        }
+
+        .menu ul {
+            list-style: none;
+            margin: 0;
+            padding-left: 0;
+        }
+
+        .menu a {
+            text-decoration: none;
+        }
+        
+        a:hover {
+            font-weight:bold;
+        }
+
+        .content {
+            text-align: left;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1.3em;
+        }
+
+        .plan, .itineraire {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+    </style>
+    <!-- responsive -->
+    <style>
+        html {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
+            -moz-box-sizing: inherit;
+            -webkit-box-sizing: inherit;
+        }
+
+        body {
+            margin: 0 auto;
+        }
+
+        /* Au dessus c'est des trucs qui "nettoyent" les propriétés par défaut des navigateurs pour respecter les tailles déclarées plus bas*/
+
+        .staticimg {
+            /*permet de reduire automatiquement la taille des images*/
+            max-width: 100%;
+            height: auto;
+        }
+
+        .columns-container {
+            /* astuce qui evite les effets de bord bizarre causés par les float à l'intérieur*/
+            /*float: left;*/
+		max-width:1220px;
+		margin-left:auto;
+		margin-right:auto;
+        }
+
+        .left-column {
+            /*taille fixe de 200px sur desktop*/
+            float: left;
+            width: 240px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+
+        .right-column {
+            /*prend le reste de la place, plus besoin de float pour le dernier element*/
+            width: 100%;
+            padding-left: 260px; /* remplace le calc pas toujours supporté */
+        }
+
+        .planwrapper:before,
+        .planwrapper:after {
+            content: " ";
+            display: table;
+        }
+
+        .planwrapper:after {
+            clear: both;
+        }
+
+        .plan {
+            float: left;
+            width: 337px;
+        }
+
+        .itineraire {
+            padding-left: 367px;
+        }
+
+        .google-maps {
+            position: relative;
+            padding-bottom: 75%; // This is the aspect ratio
+            height: 0;
+            overflow: hidden;
+        }
+        .google-maps iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* MEDIA QUERIES */
+        @media screen and (max-width: 760px ) {
+            /* mobile css */
+            /* Quand il n'y a plus assez de place, on reprend toute la largeur, du coup on passe en dessous */
+            .left-column {
+                width: 100%;
+            }
+
+            .right-column {
+                padding-left: 0;
+            }
+        }
+
+        @media screen and (max-width: 1000px ) {
+            .plan {
+                width: 100%;
+            }
+
+            .itineraire {
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="columns-container transparent">
+    <div class="left-column menu">
+        <ul>
+            <li><a href="home.html" class="menu">bienvenue</a></li>
+            <li><a href="maries.html" class="menu">les futurs mariés</a></li>
+            <li><a href="cortege.html" class="menu">le cortège</a></li>
+            <li><a href="familles.html" class="menu">les familles</a></li>
+            <li><a href="directions_fr.html" class="menu">directions</a></li>
+            <li><a href="photos.html" class="menu">vos photos</a></li>
+            <li><a href="liste.html" class="menu">liste de mariage</a></li>
+            <li><a href="rsvp_fr.html" class="menu">rsvp</a></li>
+            <li><a href="home_en.html" class="menu">english</a></li>
+        </ul>
+    </div>
+    <div class="right-column content">
+
+        <h3>Lieu de rendez-vous</h3>
+        <div>Les festivités
+            auront lieu au Domaine Al Poudre, site d'un ancien moulin à huile qui
+            doit son
+            nom au fait que Napoléon en fit un dépôt de munition en 1815. Dans un
+            registre plus festif, le domaine a également accueilli en 1865 la
+            brasserie Grade, à l'origine de la "Vieux Temps". <br>
+                              <br>
+            Le domaine est traversé par l'Orne, qui prend sa source près de
+            Gembloux et est un affluent de la Thyle et donc sous-affluent de
+            l'Escaut par la Dyle et le Rupel.
+        </div>
+        <div class="planwrapper">
+            <div class="plan">
+                <img alt="" src="images/plan2.gif">
+            </div>
+            <div class="itineraire">
+                <h4>Itinéraire</h4>
+                <ul>
+                    <li>Autoroute E411 Bruxelles-Namur</li>
+                    <li>Sortie 9 Corroy-Le-Grand, LLN Sud</li>
+                    <li>N4 vers Gembloux</li>
+                    <li>Au rond-point de la pompe à essence Q8 à droite vers Blanmont</li>
+                    <li>Suivre le fléchage "Domaine Al Poudre"</li>
+                </ul>
+                Attention, l'accès par GPS se fait par la "rue de Bau" à Chastre.<br>
+                <a href="doc/plan_al_poudre.pdf">&gt; Version imprimable</a>
+            </div>
+        </div>
+        <div class="google-maps">
+                         <iframe src="https://www.google.com/maps/embed?pb=%211m18%211m12%211m3%211d10124.290017307158%212d4.631842299999984%213d50.6257699%212m3%211f0%212f0%213f0%213m2%211i1024%212i768%214f13.1%213m3%211m2%211s0x47c17f03a601d183%3A0x4876d8853edf0820%212sRue+du+Moulin+2%2C+1450+Mont-Saint-Guibert%2C+Belgium%215e0%213m2%211sen%212sus%214v1422917849985" style="border: 0pt none ;" frameborder="0" height="600" width="968"></iframe>
+        </div>
+
+    </div>
+</div>
+<!-- async load of css to fasten mobile load -->
+<script type="text/javascript">
+    LazyLoad=function(e){function u(t,n){var r=e.createElement(t),i;for(i in n){if(n.hasOwnProperty(i)){r.setAttribute(i,n[i])}}return r}function a(e){var t=r[e],n,o;if(t){n=t.callback;o=t.urls;o.shift();i=0;if(!o.length){n&&n.call(t.context,t.obj);r[e]=null;s[e].length&&l(e)}}}function f(){var n=navigator.userAgent;t={async:e.createElement("script").async===true};(t.webkit=/AppleWebKit\//.test(n))||(t.ie=/MSIE|Trident/.test(n))||(t.opera=/Opera/.test(n))||(t.gecko=/Gecko\//.test(n))||(t.unknown=true)}function l(i,o,l,p,d){var v=function(){a(i)},m=i==="css",g=[],y,b,w,E,S,x;t||f();if(o){o=typeof o==="string"?[o]:o.concat();if(m||t.async||t.gecko||t.opera){s[i].push({urls:o,callback:l,obj:p,context:d})}else{for(y=0,b=o.length;y<b;++y){s[i].push({urls:[o[y]],callback:y===b-1?l:null,obj:p,context:d})}}}if(r[i]||!(E=r[i]=s[i].shift())){return}n||(n=e.head||e.getElementsByTagName("head")[0]);S=E.urls.concat();for(y=0,b=S.length;y<b;++y){x=S[y];if(m){w=t.gecko?u("style"):u("link",{href:x,rel:"stylesheet"})}else{w=u("script",{src:x});w.async=false}w.className="lazyload";w.setAttribute("charset","utf-8");if(t.ie&&!m&&"onreadystatechange"in w&&!("draggable"in w)){w.onreadystatechange=function(){if(/loaded|complete/.test(w.readyState)){w.onreadystatechange=null;v()}}}else if(m&&(t.gecko||t.webkit)){if(t.webkit){E.urls[y]=w.href;h()}else{w.innerHTML='@import "'+x+'";';c(w)}}else{w.onload=w.onerror=v}g.push(w)}for(y=0,b=g.length;y<b;++y){n.appendChild(g[y])}}function c(e){var t;try{t=!!e.sheet.cssRules}catch(n){i+=1;if(i<200){setTimeout(function(){c(e)},50)}else{t&&a("css")}return}a("css")}function h(){var e=r.css,t;if(e){t=o.length;while(--t>=0){if(o[t].href===e.urls[0]){a("css");break}}i+=1;if(e){if(i<200){setTimeout(h,50)}else{a("css")}}}}var t,n,r={},i=0,s={css:[],js:[]},o=e.styleSheets;return{css:function(e,t,n,r){l("css",e,t,n,r)},js:function(e,t,n,r){l("js",e,t,n,r)}}}(this.document)
+    LazyLoad.css("http://fonts.googleapis.com/css?family=Josefin+Sans:400,700", function() {});
+    LazyLoad.css("http://fonts.googleapis.com/css?family=Amatic+SC:400,700", function() {});
+</script>
+</body>
+</html>
